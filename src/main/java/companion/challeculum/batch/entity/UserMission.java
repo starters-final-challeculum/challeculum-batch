@@ -1,0 +1,40 @@
+package companion.challeculum.batch.entity;
+
+import lombok.Data;
+
+import javax.persistence.*;
+import java.time.LocalDateTime;
+
+/**
+ * Created by jonghyeon on 2023/02/26,
+ * Package : companion.challeculum.batch.entity
+ */
+@Entity
+@Data
+@Table(name = "user_mission")
+public class UserMission {
+
+    @EmbeddedId
+    private UserMissionId id;
+
+    @ManyToOne
+    @MapsId("userId")
+    @JoinColumn(name = "user_id")
+    private User user;
+
+    @ManyToOne
+    @MapsId("missionId")
+    @JoinColumn(name = "mission_id")
+    private Mission mission;
+
+    @Column(name = "submit_at")
+    private LocalDateTime submitAt;
+
+    @Column(name = "is_accepted")
+    private String isAccepted;
+
+    @Column(name = "image_url")
+    private String imageUrl;
+
+    // constructors, getters, and setters
+}
