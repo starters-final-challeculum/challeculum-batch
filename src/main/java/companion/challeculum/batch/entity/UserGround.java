@@ -28,6 +28,4 @@ public class UserGround {
 
     @Column(name = "is_success")
     private boolean isSuccess;
-
-    // constructors, getters, and setters
 }

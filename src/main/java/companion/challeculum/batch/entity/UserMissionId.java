@@ -18,6 +18,4 @@ public class UserMissionId implements Serializable {
 
     @Column(name = "mission_id")
     private Long missionId;
-
-    // constructors, getters, and setters
 }

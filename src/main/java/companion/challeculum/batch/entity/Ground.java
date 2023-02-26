@@ -5,6 +5,7 @@ import lombok.Data;
 import javax.persistence.*;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.List;
 
 /**
  * Created by jonghyeon on 2023/02/26,
@@ -41,8 +42,6 @@ public class Ground {
 
     @Column(name = "status")
     private String status;
-
-    // constructors, getters, and setters
 }
 
 

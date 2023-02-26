@@ -28,6 +28,4 @@ public class Mission {
 
     @Column(name = "mission_at")
     private LocalDate missionAt;
-
-    // constructors, getters, and setters
 }

@@ -2,7 +2,7 @@ package companion.challeculum.batch.job;
 
 import companion.challeculum.batch.config.Constants;
 import companion.challeculum.batch.entity.UserMission;
-import companion.challeculum.batch.writer.MissionAcceptedItemWriter;
+import companion.challeculum.batch.repository.UserMissionRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.batch.core.Job;
 import org.springframework.batch.core.Step;
@@ -10,6 +10,7 @@ import org.springframework.batch.core.configuration.annotation.JobBuilderFactory
 import org.springframework.batch.core.configuration.annotation.StepBuilderFactory;
 import org.springframework.batch.core.launch.support.RunIdIncrementer;
 import org.springframework.batch.item.ItemProcessor;
+import org.springframework.batch.item.ItemWriter;
 import org.springframework.batch.item.database.JpaPagingItemReader;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -27,24 +28,25 @@ public class MissionAcceptedJobConfig {
     private final JobBuilderFactory jobBuilderFactory;
     private final StepBuilderFactory stepBuilderFactory;
     private final EntityManagerFactory entityManagerFactory;
+    private final UserMissionRepository userMissionRepository;
 
 
     @Bean
-    public Job missionAcceptedJob(MissionAcceptedItemWriter itemWriter) {
+    public Job missionAcceptedJob() {
         return jobBuilderFactory.get("missionAcceptedJob")
                 .incrementer(new RunIdIncrementer())
-                .flow(step(itemWriter))
+                .flow(step())
                 .end()
                 .build();
     }
 
     @Bean
-    public Step step(MissionAcceptedItemWriter itemWriter) {
+    public Step step() {
         return stepBuilderFactory.get("step")
                 .<UserMission, UserMission>chunk(10)
                 .reader(reader())
                 .processor(processor())
-                .writer(itemWriter)
+                .writer(writer())
                 .build();
     }
 
@@ -60,5 +62,13 @@ public class MissionAcceptedJobConfig {
     @Bean
     public ItemProcessor<UserMission, UserMission> processor() {
         return item -> item;
+    }
+
+    @Bean
+    public ItemWriter<UserMission> writer(){
+        return list -> list.stream().filter(item -> item.getIsAccepted().equals(Constants.USER_MISSION_WAITING)).forEach(item -> {
+            item.setIsAccepted(Constants.USER_MISSION_ACCEPTED);
+            userMissionRepository.save(item);
+        });
     }
 }

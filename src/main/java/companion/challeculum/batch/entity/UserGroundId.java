@@ -18,6 +18,4 @@ public class UserGroundId implements Serializable {
 
     @Column(name = "ground_id")
     private Long groundId;
-
-    // constructors, getters, and setters
 }
