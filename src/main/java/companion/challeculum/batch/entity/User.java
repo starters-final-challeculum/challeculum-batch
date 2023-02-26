@@ -3,6 +3,7 @@ package companion.challeculum.batch.entity;
 import lombok.Data;
 
 import javax.persistence.*;
+import java.util.List;
 
 /**
  * Created by jonghyeon on 2023/02/26,
@@ -41,5 +42,9 @@ public class User {
 
     @Column(name = "role")
     private String role;
+
+    @OneToMany
+    @JoinColumn(name = "user_id")
+    private List<UserGround> userGroundList;
 }
 

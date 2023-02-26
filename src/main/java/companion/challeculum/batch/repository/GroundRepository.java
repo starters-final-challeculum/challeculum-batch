@@ -14,4 +14,6 @@ public interface GroundRepository extends JpaRepository<Ground, Long> {
     List<Ground> findByStartAtBeforeAndStatusEquals(LocalDate now, String status);
 
     List<Ground> findByEndAtBeforeAndStatusEquals(LocalDate now, String status);
+
+    List<Ground> findByStartAtBeforeAndStatus(LocalDate now, String status);
 }

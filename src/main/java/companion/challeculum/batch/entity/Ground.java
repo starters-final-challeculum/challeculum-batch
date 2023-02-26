@@ -5,6 +5,7 @@ import lombok.Data;
 import javax.persistence.*;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.Collection;
 import java.util.List;
 
 /**
@@ -42,6 +43,11 @@ public class Ground {
 
     @Column(name = "status")
     private String status;
+
+    @OneToMany
+    @JoinColumn(name = "ground_id")
+    private List<UserGround> userGroundList;
+
 }
 
 

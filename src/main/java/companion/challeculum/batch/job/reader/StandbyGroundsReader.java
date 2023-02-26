@@ -5,6 +5,7 @@ import companion.challeculum.batch.entity.Ground;
 import companion.challeculum.batch.repository.GroundRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.batch.item.ItemReader;
+import org.springframework.batch.item.database.JpaPagingItemReader;
 
 import java.time.LocalDate;
 import java.util.Iterator;

@@ -10,4 +10,5 @@ import org.springframework.stereotype.Repository;
  */
 @Repository
 public interface UserMissionRepository extends JpaRepository<UserMission, Long> {
+    UserMission findByUserIdAndMissionId(Long userId, Long missionId);
 }
