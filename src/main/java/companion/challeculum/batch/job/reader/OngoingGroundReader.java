@@ -4,8 +4,6 @@ import companion.challeculum.batch.config.Constants;
 import companion.challeculum.batch.entity.Ground;
 import companion.challeculum.batch.repository.GroundRepository;
 import lombok.RequiredArgsConstructor;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.batch.item.ItemReader;
 import org.springframework.stereotype.Component;
 
@@ -20,21 +18,17 @@ import java.util.List;
 @Component
 @RequiredArgsConstructor
 public class OngoingGroundReader implements ItemReader<Ground> {
-    private static final Logger log = LoggerFactory.getLogger(OngoingGroundReader.class);
     private final GroundRepository groundRepository;
     private Iterator<Ground> groundIterator;
 
     @Override
     public Ground read() {
         if (groundIterator == null) {
-            List<Ground> ongoingGrounds = groundRepository.findByEndAtBeforeAndStatusEquals(LocalDate.now(), Constants.GROUND_STANDBY);
+            List<Ground> ongoingGrounds = groundRepository
+                    .findByEndAtEqualsAndStatusEquals(LocalDate.now().minusDays(1), Constants.GROUND_STANDBY);
             groundIterator = ongoingGrounds.iterator();
         }
-
-        if (groundIterator.hasNext()) {
-            return groundIterator.next();
-        } else {
-            return null;
-        }
+        if (groundIterator.hasNext()) return groundIterator.next();
+        else return null;
     }
 }

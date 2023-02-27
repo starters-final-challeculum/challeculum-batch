@@ -11,9 +11,7 @@ import java.util.List;
  * Package : companion.challeculum.batch.repository
  */
 public interface GroundRepository extends JpaRepository<Ground, Long> {
-    List<Ground> findByStartAtBeforeAndStatusEquals(LocalDate now, String status);
+    List<Ground> findByStartAtEqualsAndStatusEquals(LocalDate date, String status);
 
-    List<Ground> findByEndAtBeforeAndStatusEquals(LocalDate now, String status);
-
-    List<Ground> findByStartAtBeforeAndStatus(LocalDate now, String status);
+    List<Ground> findByEndAtEqualsAndStatusEquals(LocalDate date, String status);
 }

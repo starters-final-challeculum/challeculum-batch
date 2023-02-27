@@ -23,13 +23,10 @@ public class TodayMissionReader implements ItemReader<Mission> {
     @Override
     public Mission read() {
         if (missionIterator == null) {
-            List<Mission> todayMissionList = missionRepository.findByMissionAtIs(LocalDate.now());
+            List<Mission> todayMissionList = missionRepository.findByMissionAtIs(LocalDate.now().minusDays(1));
             missionIterator = todayMissionList.iterator();
         }
-        if (missionIterator.hasNext()) {
-            return missionIterator.next();
-        } else {
-            return null;
-        }
+        if (missionIterator.hasNext()) return missionIterator.next();
+        else return null;
     }
 }

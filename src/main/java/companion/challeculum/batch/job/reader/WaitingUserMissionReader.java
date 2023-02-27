@@ -16,20 +16,18 @@ import java.util.List;
  */
 @Component
 @RequiredArgsConstructor
-public class SubmittedUserMissionReader implements ItemReader<UserMission> {
+public class WaitingUserMissionReader implements ItemReader<UserMission> {
 
     private final UserMissionRepository userMissionRepository;
     private Iterator<UserMission> userMissionIterator;
+
     @Override
     public UserMission read() {
-        if (userMissionIterator == null){
+        if (userMissionIterator == null) {
             List<UserMission> userMissionList = userMissionRepository.findByIsAcceptedIs(Constants.USER_MISSION_WAITING);
-            userMissionList.iterator();
+            userMissionIterator = userMissionList.iterator();
         }
-        if (userMissionIterator.hasNext()) {
-            return userMissionIterator.next();
-        } else {
-            return null;
-        }
+        if (userMissionIterator.hasNext()) return userMissionIterator.next();
+        else return null;
     }
 }

@@ -15,8 +15,8 @@ import org.springframework.stereotype.Component;
 public class StandbyGroundProcessor implements ItemProcessor<Ground, Ground> {
 
     @Override
-    public Ground process(Ground item) {
-        item.setStatus(Constants.GROUND_ONGOING);
-        return item;
+    public Ground process(Ground ground) {
+        ground.setStatus(Constants.GROUND_ONGOING);
+        return ground;
     }
 }

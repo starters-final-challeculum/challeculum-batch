@@ -27,5 +27,5 @@ public class UserGround {
     private Ground ground;
 
     @Column(name = "is_success")
-    private boolean isSuccess;
+    private Boolean isSuccess;
 }

@@ -1,9 +1,9 @@
 package companion.challeculum.batch.job;
 
 import companion.challeculum.batch.entity.Ground;
-import companion.challeculum.batch.job.processor.OngoingGroundProcessor;
-import companion.challeculum.batch.job.reader.OngoingGroundReader;
-import companion.challeculum.batch.job.writer.OngoingGroundWriter;
+import companion.challeculum.batch.job.processor.StandbyGroundProcessor;
+import companion.challeculum.batch.job.reader.StandbyGroundReader;
+import companion.challeculum.batch.job.writer.StandbyGroundWriter;
 import lombok.RequiredArgsConstructor;
 import org.springframework.batch.core.Job;
 import org.springframework.batch.core.Step;
@@ -14,33 +14,33 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 /**
- * Created by jonghyeon on 2023/02/27,
+ * Created by jonghyeon on 2023/02/28,
  * Package : companion.challeculum.batch.job
  */
 @Configuration
 @RequiredArgsConstructor
-public class GroundCompletionJobConfig {
+public class StandbyGroundUpdateJobConfig {
     private final JobBuilderFactory jobBuilderFactory;
     private final StepBuilderFactory stepBuilderFactory;
-    private final OngoingGroundReader ongoingGroundReader;
-    private final OngoingGroundProcessor ongoingGroundProcessor;
-    private final OngoingGroundWriter ongoingGroundWriter;
+    private final StandbyGroundReader standbyGroundReader;
+    private final StandbyGroundProcessor standbyGroundProcessor;
+    private final StandbyGroundWriter standbyGroundWriter;
 
     @Bean
-    public Job groundCompletionJob(Step groundCompletionStep) {
-        return jobBuilderFactory.get("groundCompletionJob")
+    public Job standbyGroundUpdateJob(Step standbyGroundUpdateStep) {
+        return jobBuilderFactory.get("standbyGroundUpdateJob")
                 .incrementer(new RunIdIncrementer())
-                .start(groundCompletionStep)
+                .start(standbyGroundUpdateStep)
                 .build();
     }
 
     @Bean
-    public Step groundCompletionStep() {
-        return stepBuilderFactory.get("groundCompletionStep")
+    public Step standbyGroundUpdateStep() {
+        return stepBuilderFactory.get("standbyGroundUpdateStep")
                 .<Ground, Ground>chunk(10)
-                .reader(ongoingGroundReader)
-                .processor(ongoingGroundProcessor)
-                .writer(ongoingGroundWriter)
+                .reader(standbyGroundReader)
+                .processor(standbyGroundProcessor)
+                .writer(standbyGroundWriter)
                 .build();
     }
 

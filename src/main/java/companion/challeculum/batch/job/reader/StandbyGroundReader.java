@@ -5,7 +5,6 @@ import companion.challeculum.batch.entity.Ground;
 import companion.challeculum.batch.repository.GroundRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.batch.item.ItemReader;
-import org.springframework.batch.item.database.JpaPagingItemReader;
 import org.springframework.stereotype.Component;
 
 import java.time.LocalDate;
@@ -19,7 +18,7 @@ import java.util.List;
 
 @Component
 @RequiredArgsConstructor
-public class StandbyGroundsReader implements ItemReader<Ground> {
+public class StandbyGroundReader implements ItemReader<Ground> {
 
     private final GroundRepository groundRepository;
     private Iterator<Ground> groundIterator;
@@ -27,15 +26,11 @@ public class StandbyGroundsReader implements ItemReader<Ground> {
     @Override
     public Ground read() {
         if (groundIterator == null) {
-            List<Ground> ongoingGrounds = groundRepository.findByStartAtBeforeAndStatusEquals(LocalDate.now(), Constants.GROUND_STANDBY);
+            List<Ground> ongoingGrounds = groundRepository.findByStartAtEqualsAndStatusEquals(LocalDate.now(), Constants.GROUND_STANDBY);
             groundIterator = ongoingGrounds.iterator();
         }
-
-        if (groundIterator.hasNext()) {
-            return groundIterator.next();
-        } else {
-            return null;
-        }
+        if (groundIterator.hasNext()) return groundIterator.next();
+        else return null;
     }
 }
 

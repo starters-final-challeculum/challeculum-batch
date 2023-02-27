@@ -10,5 +10,5 @@ import java.util.List;
  * Package : companion.challeculum.batch.repository
  */
 public interface UserGroundRepository extends JpaRepository<UserGround, Long> {
-    List<UserGround> findAllByGround_Id(Long groundId);
+    List<UserGround> findAllByGroundId(Long groundId);
 }

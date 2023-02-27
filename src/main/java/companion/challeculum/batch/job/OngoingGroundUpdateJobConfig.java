@@ -1,9 +1,9 @@
 package companion.challeculum.batch.job;
 
 import companion.challeculum.batch.entity.Ground;
-import companion.challeculum.batch.job.processor.GroundCancelProcessor;
-import companion.challeculum.batch.job.reader.GroundCancelReader;
-import companion.challeculum.batch.job.writer.GroundCancelWriter;
+import companion.challeculum.batch.job.processor.OngoingGroundProcessor;
+import companion.challeculum.batch.job.reader.OngoingGroundReader;
+import companion.challeculum.batch.job.writer.OngoingGroundWriter;
 import lombok.RequiredArgsConstructor;
 import org.springframework.batch.core.Job;
 import org.springframework.batch.core.Step;
@@ -14,34 +14,33 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 /**
- * Created by jonghyeon on 2023/02/27,
+ * Created by jonghyeon on 2023/02/28,
  * Package : companion.challeculum.batch.job
  */
 @Configuration
 @RequiredArgsConstructor
-public class GroundCancelJobConfig {
-
+public class OngoingGroundUpdateJobConfig {
     private final JobBuilderFactory jobBuilderFactory;
     private final StepBuilderFactory stepBuilderFactory;
-    private final GroundCancelReader groundCancelReader;
-    private final GroundCancelProcessor groundCancelProcessor;
-    private final GroundCancelWriter groundCancelWriter;
+    private final OngoingGroundReader ongoingGroundReader;
+    private final OngoingGroundProcessor ongoingGroundProcessor;
+    private final OngoingGroundWriter ongoingGroundWriter;
+
     @Bean
-    public Job groundCancelJob() {
-        return jobBuilderFactory.get("groundCancelJob")
+    public Job ongoingGroundUpdateJob(Step ongoingGroundUpdateStep) {
+        return jobBuilderFactory.get("ongoingGroundUpdateJob")
                 .incrementer(new RunIdIncrementer())
-                .start(cancelGroundStep())
+                .start(ongoingGroundUpdateStep)
                 .build();
     }
 
     @Bean
-    public Step cancelGroundStep() {
-        return stepBuilderFactory.get("cancelGroundStep")
+    public Step ongoingGroundUpdateStep() {
+        return stepBuilderFactory.get("ongoingGroundUpdateStep")
                 .<Ground, Ground>chunk(10)
-                .reader(groundCancelReader)
-                .processor(groundCancelProcessor)
-                .writer(groundCancelWriter)
+                .reader(ongoingGroundReader)
+                .processor(ongoingGroundProcessor)
+                .writer(ongoingGroundWriter)
                 .build();
     }
-
 }

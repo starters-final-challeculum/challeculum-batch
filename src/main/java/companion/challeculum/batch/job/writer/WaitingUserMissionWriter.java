@@ -15,12 +15,12 @@ import java.util.List;
  */
 @Component
 @RequiredArgsConstructor
-public class UnCheckedUsrMissionAcceptWriter implements ItemWriter<UserMission> {
+public class WaitingUserMissionWriter implements ItemWriter<UserMission> {
 
     private final UserMissionRepository userMissionRepository;
 
     @Override
-    public void write(List<? extends UserMission> list) throws Exception {
+    public void write(List<? extends UserMission> list) {
         list.stream().filter(item -> item.getIsAccepted().equals(Constants.USER_MISSION_WAITING)).forEach(item -> {
             item.setIsAccepted(Constants.USER_MISSION_ACCEPTED);
             userMissionRepository.save(item);
