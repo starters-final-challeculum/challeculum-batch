@@ -6,6 +6,7 @@ import companion.challeculum.batch.repository.GroundRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.batch.item.ItemReader;
 import org.springframework.batch.item.database.JpaPagingItemReader;
+import org.springframework.stereotype.Component;
 
 import java.time.LocalDate;
 import java.util.Iterator;
@@ -16,6 +17,7 @@ import java.util.List;
  * Package : companion.challeculum.batch.job.reader
  */
 
+@Component
 @RequiredArgsConstructor
 public class StandbyGroundsReader implements ItemReader<Ground> {
 

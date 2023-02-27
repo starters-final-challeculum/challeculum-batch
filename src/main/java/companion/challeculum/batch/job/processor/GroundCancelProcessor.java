@@ -1,9 +1,7 @@
 package companion.challeculum.batch.job.processor;
 
 import companion.challeculum.batch.entity.Ground;
-import companion.challeculum.batch.entity.User;
 import companion.challeculum.batch.entity.UserGround;
-import companion.challeculum.batch.repository.UserGroundRepository;
 import companion.challeculum.batch.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.batch.item.ItemProcessor;

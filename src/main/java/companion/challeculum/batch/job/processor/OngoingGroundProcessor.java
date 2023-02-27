@@ -2,9 +2,11 @@ package companion.challeculum.batch.job.processor;
 
 import companion.challeculum.batch.config.Constants;
 import companion.challeculum.batch.entity.Ground;
+import lombok.RequiredArgsConstructor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.batch.item.ItemProcessor;
+import org.springframework.stereotype.Component;
 
 import java.time.LocalDate;
 
@@ -12,6 +14,8 @@ import java.time.LocalDate;
  * Created by jonghyeon on 2023/02/27,
  * Package : companion.challeculum.batch.job.processor
  */
+@Component
+@RequiredArgsConstructor
 public class OngoingGroundProcessor implements ItemProcessor<Ground, Ground> {
     private static final Logger log = LoggerFactory.getLogger(OngoingGroundProcessor.class);
 

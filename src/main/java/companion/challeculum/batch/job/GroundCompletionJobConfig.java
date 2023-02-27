@@ -4,9 +4,6 @@ import companion.challeculum.batch.entity.Ground;
 import companion.challeculum.batch.job.processor.OngoingGroundProcessor;
 import companion.challeculum.batch.job.reader.OngoingGroundReader;
 import companion.challeculum.batch.job.writer.OngoingGroundWriter;
-import companion.challeculum.batch.repository.GroundRepository;
-import companion.challeculum.batch.repository.UserGroundRepository;
-import companion.challeculum.batch.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.batch.core.Job;
 import org.springframework.batch.core.Step;
@@ -15,8 +12,6 @@ import org.springframework.batch.core.configuration.annotation.StepBuilderFactor
 import org.springframework.batch.core.launch.support.RunIdIncrementer;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-
-import javax.persistence.EntityManagerFactory;
 
 /**
  * Created by jonghyeon on 2023/02/27,
@@ -27,11 +22,9 @@ import javax.persistence.EntityManagerFactory;
 public class GroundCompletionJobConfig {
     private final JobBuilderFactory jobBuilderFactory;
     private final StepBuilderFactory stepBuilderFactory;
-
-    private final GroundRepository groundRepository;
-
-    private final UserGroundRepository userGroundRepository;
-    private final UserRepository userRepository;
+    private final OngoingGroundReader ongoingGroundReader;
+    private final OngoingGroundProcessor ongoingGroundProcessor;
+    private final OngoingGroundWriter ongoingGroundWriter;
 
     @Bean
     public Job groundCompletionJob(Step groundCompletionStep) {
@@ -42,29 +35,13 @@ public class GroundCompletionJobConfig {
     }
 
     @Bean
-    public Step groundCompletionStep(OngoingGroundReader ongoingGroundReader,
-                                     OngoingGroundProcessor ongoingGroundProcessor,
-                                     OngoingGroundWriter groundWriter) {
+    public Step groundCompletionStep() {
         return stepBuilderFactory.get("groundCompletionStep")
                 .<Ground, Ground>chunk(10)
                 .reader(ongoingGroundReader)
                 .processor(ongoingGroundProcessor)
-                .writer(groundWriter)
+                .writer(ongoingGroundWriter)
                 .build();
     }
 
-    @Bean
-    public OngoingGroundReader groundReader() {
-        return new OngoingGroundReader(groundRepository);
-    }
-
-    @Bean
-    public OngoingGroundProcessor groundProcessor() {
-        return new OngoingGroundProcessor();
-    }
-
-    @Bean
-    public OngoingGroundWriter groundWriter() {
-        return new OngoingGroundWriter(userRepository, groundRepository, userGroundRepository);
-    }
 }

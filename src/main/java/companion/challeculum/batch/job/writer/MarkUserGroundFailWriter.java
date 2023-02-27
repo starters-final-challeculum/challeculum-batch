@@ -18,7 +18,7 @@ import java.util.List;
  */
 @Component
 @RequiredArgsConstructor
-public class MarkGroundFailWriter implements ItemWriter<Mission> {
+public class MarkUserGroundFailWriter implements ItemWriter<Mission> {
     private final UserMissionRepository userMissionRepository;
     @Override
     public void write(List<? extends Mission> list) throws Exception {

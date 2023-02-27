@@ -45,7 +45,6 @@ public class MissionAcceptedJobConfig {
         return stepBuilderFactory.get("step")
                 .<UserMission, UserMission>chunk(10)
                 .reader(reader())
-                .processor(processor())
                 .writer(writer())
                 .build();
     }
@@ -57,11 +56,6 @@ public class MissionAcceptedJobConfig {
         reader.setQueryString(String.format("SELECT um FROM UserMission um WHERE um.isAccepted = '%s'", Constants.USER_MISSION_WAITING));
         reader.setPageSize(10);
         return reader;
-    }
-
-    @Bean
-    public ItemProcessor<UserMission, UserMission> processor() {
-        return item -> item;
     }
 
     @Bean

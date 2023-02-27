@@ -1,11 +1,8 @@
 package companion.challeculum.batch.job;
 
-import companion.challeculum.batch.entity.Ground;
 import companion.challeculum.batch.entity.Mission;
-import companion.challeculum.batch.job.processor.StandbyGroundProcessor;
 import companion.challeculum.batch.job.reader.TodayMissionReader;
-import companion.challeculum.batch.job.writer.MarkGroundFailWriter;
-import companion.challeculum.batch.job.writer.StandbyGroundWriter;
+import companion.challeculum.batch.job.writer.MarkUserGroundFailWriter;
 import companion.challeculum.batch.repository.GroundRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.batch.core.Job;
@@ -14,9 +11,6 @@ import org.springframework.batch.core.configuration.annotation.EnableBatchProces
 import org.springframework.batch.core.configuration.annotation.JobBuilderFactory;
 import org.springframework.batch.core.configuration.annotation.StepBuilderFactory;
 import org.springframework.batch.core.launch.support.RunIdIncrementer;
-import org.springframework.batch.item.ItemProcessor;
-import org.springframework.batch.item.ItemReader;
-import org.springframework.batch.item.ItemWriter;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -25,28 +19,28 @@ import org.springframework.context.annotation.Configuration;
  * Package : companion.challeculum.batch.job
  */
 @Configuration
-@EnableBatchProcessing
 @RequiredArgsConstructor
 public class MarkGroundFailJobConfig {
 
     private final JobBuilderFactory jobBuilderFactory;
     private final StepBuilderFactory stepBuilderFactory;
-    private final GroundRepository groundRepository;
+    private final TodayMissionReader todayMissionReader;
+    private final MarkUserGroundFailWriter markUserGroundFailWriter;
 
     @Bean
-    public Job updateGroundStatusJob(TodayMissionReader todayMissionReader, MarkGroundFailWriter markGroundFailWriter) {
+    public Job updateGroundStatusJob(Step updateGroundStatusStep) {
         return jobBuilderFactory.get("updateGroundStatusJob")
                 .incrementer(new RunIdIncrementer())
-                .start(updateGroundStatusStep(todayMissionReader, markGroundFailWriter))
+                .start(updateGroundStatusStep)
                 .build();
     }
 
     @Bean
-    public Step updateGroundStatusStep(TodayMissionReader todayMissionReader, MarkGroundFailWriter markGroundFailWriter) {
+    public Step updateGroundStatusStep() {
         return stepBuilderFactory.get("updateGroundStatusStep")
                 .<Mission, Mission>chunk(10)
                 .reader(todayMissionReader)
-                .writer(markGroundFailWriter)
+                .writer(markUserGroundFailWriter)
                 .build();
     }
 }
