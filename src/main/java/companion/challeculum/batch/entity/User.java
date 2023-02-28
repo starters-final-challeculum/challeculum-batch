@@ -28,7 +28,7 @@ public class User {
     @Column(name = "role")
     private String role;
 
-    @OneToMany
+    @OneToMany(cascade = CascadeType.REMOVE)
     @JoinColumn(name = "user_id")
     private List<UserGround> userGroundList;
 }

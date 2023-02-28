@@ -24,8 +24,8 @@ public class OngoingGroundReader implements ItemReader<Ground> {
     @Override
     public Ground read() {
         if (groundIterator == null) {
-            List<Ground> ongoingGrounds = groundRepository
-                    .findByEndAtEqualsAndStatusEquals(LocalDate.now().minusDays(1), Constants.GROUND_STANDBY);
+//            List<Ground> ongoingGrounds = groundRepository.findByEndAtEqualsAndStatusEquals(LocalDate.now().minusDays(1), Constants.GROUND_ONGOING);
+            List<Ground> ongoingGrounds = groundRepository.findByStatusEquals(Constants.GROUND_ONGOING);
             groundIterator = ongoingGrounds.iterator();
         }
         if (groundIterator.hasNext()) return groundIterator.next();

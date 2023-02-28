@@ -3,7 +3,7 @@ package companion.challeculum.batch.job;
 import companion.challeculum.batch.entity.Ground;
 import companion.challeculum.batch.job.processor.OngoingGroundProcessor;
 import companion.challeculum.batch.job.reader.OngoingGroundReader;
-import companion.challeculum.batch.job.writer.OngoingGroundWriter;
+import companion.challeculum.batch.job.writer.OngoingGroundUpdateWriter;
 import lombok.RequiredArgsConstructor;
 import org.springframework.batch.core.Job;
 import org.springframework.batch.core.Step;
@@ -24,7 +24,7 @@ public class OngoingGroundUpdateJobConfig {
     private final StepBuilderFactory stepBuilderFactory;
     private final OngoingGroundReader ongoingGroundReader;
     private final OngoingGroundProcessor ongoingGroundProcessor;
-    private final OngoingGroundWriter ongoingGroundWriter;
+    private final OngoingGroundUpdateWriter ongoingGroundUpdateWriter;
 
     @Bean
     public Job ongoingGroundUpdateJob(Step ongoingGroundUpdateStep) {
@@ -40,7 +40,7 @@ public class OngoingGroundUpdateJobConfig {
                 .<Ground, Ground>chunk(10)
                 .reader(ongoingGroundReader)
                 .processor(ongoingGroundProcessor)
-                .writer(ongoingGroundWriter)
+                .writer(ongoingGroundUpdateWriter)
                 .build();
     }
 }

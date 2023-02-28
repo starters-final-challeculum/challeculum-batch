@@ -1,5 +1,6 @@
 package companion.challeculum.batch.job.writer;
 
+import companion.challeculum.batch.config.Constants;
 import companion.challeculum.batch.entity.Ground;
 import companion.challeculum.batch.entity.UserGround;
 import companion.challeculum.batch.repository.GroundRepository;
@@ -18,7 +19,7 @@ import java.util.List;
  */
 @Component
 @RequiredArgsConstructor
-public class OngoingGroundWriter implements ItemWriter<Ground> {
+public class OngoingGroundUpdateWriter implements ItemWriter<Ground> {
     private final UserRepository userRepository;
     private final GroundRepository groundRepository;
     private final UserGroundRepository userGroundRepository;
@@ -43,6 +44,7 @@ public class OngoingGroundWriter implements ItemWriter<Ground> {
                 user.setMissionScore(user.getMissionScore() + 5);
                 userRepository.save(user);
             });
+            ground.setStatus(Constants.GROUND_COMPLETED);
             groundRepository.save(ground);
         });
     }

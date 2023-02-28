@@ -16,7 +16,6 @@ public class OngoingGroundProcessor implements ItemProcessor<Ground, Ground> {
 
     @Override
     public Ground process(Ground ground) {
-        ground.setStatus(Constants.GROUND_ONGOING);
         return ground;
     }
 }
