@@ -1,6 +1,8 @@
 package companion.challeculum.batch.entity;
 
 import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 
 import javax.persistence.*;
 import java.time.LocalDate;
@@ -11,7 +13,8 @@ import java.util.List;
  * Package : companion.challeculum.batch.entity
  */
 @Entity
-@Data
+@Getter
+@Setter
 @Table(name = "ground")
 public class Ground {
 

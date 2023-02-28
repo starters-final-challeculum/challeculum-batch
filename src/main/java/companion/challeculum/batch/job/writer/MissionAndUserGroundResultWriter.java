@@ -10,6 +10,7 @@ import org.springframework.batch.item.ItemWriter;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
+import java.util.Objects;
 
 /**
  * Created by jonghyeon on 2023/02/27,
@@ -35,8 +36,7 @@ public class MissionAndUserGroundResultWriter implements ItemWriter<Mission> {
                     userGround.setIsSuccess(false);
                     user.setMissionScore(user.getMissionScore() - 10);
                     userGroundRepository.save(userGround);
-                }
-                if (userMission.getIsAccepted().equals(Constants.USER_MISSION_REJECTED)) {
+                } else if (Objects.requireNonNull(userMission).getIsAccepted().equals(Constants.USER_MISSION_REJECTED)) {
                     userGround.setIsSuccess(false);
                     user.setMissionScore(user.getMissionScore() - 5);
                     userGroundRepository.save(userGround);

@@ -1,6 +1,8 @@
 package companion.challeculum.batch.entity;
 
 import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
@@ -10,7 +12,8 @@ import java.time.LocalDateTime;
  * Package : companion.challeculum.batch.entity
  */
 @Entity
-@Data
+@Getter
+@Setter
 @Table(name = "user_mission")
 public class UserMission {
 
