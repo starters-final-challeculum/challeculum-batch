@@ -23,9 +23,6 @@ public class Mission {
     @JoinColumn(name = "ground_id")
     private Ground ground;
 
-    @Column(name = "assignment")
-    private String assignment;
-
     @Column(name = "mission_at")
     private LocalDate missionAt;
 }

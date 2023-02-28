@@ -3,7 +3,7 @@ package companion.challeculum.batch.job;
 import companion.challeculum.batch.entity.Ground;
 import companion.challeculum.batch.job.processor.StandbyGroundProcessor;
 import companion.challeculum.batch.job.reader.StandbyGroundReader;
-import companion.challeculum.batch.job.writer.StandbyGroundWriter;
+import companion.challeculum.batch.job.writer.StandbyGroundUpdateWriter;
 import lombok.RequiredArgsConstructor;
 import org.springframework.batch.core.Job;
 import org.springframework.batch.core.Step;
@@ -24,7 +24,7 @@ public class StandbyGroundUpdateJobConfig {
     private final StepBuilderFactory stepBuilderFactory;
     private final StandbyGroundReader standbyGroundReader;
     private final StandbyGroundProcessor standbyGroundProcessor;
-    private final StandbyGroundWriter standbyGroundWriter;
+    private final StandbyGroundUpdateWriter standbyGroundUpdateWriter;
 
     @Bean
     public Job standbyGroundUpdateJob(Step standbyGroundUpdateStep) {
@@ -40,7 +40,7 @@ public class StandbyGroundUpdateJobConfig {
                 .<Ground, Ground>chunk(10)
                 .reader(standbyGroundReader)
                 .processor(standbyGroundProcessor)
-                .writer(standbyGroundWriter)
+                .writer(standbyGroundUpdateWriter)
                 .build();
     }
 

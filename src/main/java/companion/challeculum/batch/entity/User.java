@@ -19,21 +19,6 @@ public class User {
     @Column(name = "user_id")
     private Long id;
 
-    @Column(name = "oauth_id")
-    private String oauthId;
-
-    @Column(name = "username")
-    private String username;
-
-    @Column(name = "password")
-    private String password;
-
-    @Column(name = "nickname")
-    private String nickname;
-
-    @Column(name = "phone")
-    private String phone;
-
     @Column(name = "point")
     private int point;
 

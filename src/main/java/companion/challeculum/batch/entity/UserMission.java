@@ -32,7 +32,4 @@ public class UserMission {
 
     @Column(name = "is_accepted")
     private String isAccepted;
-
-    @Column(name = "image_url")
-    private String imageUrl;
 }

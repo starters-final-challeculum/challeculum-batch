@@ -20,13 +20,6 @@ public class Ground {
     @Column(name = "ground_id")
     private Long id;
 
-    @ManyToOne
-    @JoinColumn(name = "create_user_id")
-    private User createUser;
-
-    @Column(name = "ground_title")
-    private String title;
-
     @Column(name = "min_capacity")
     private int minCapacity;
 
@@ -42,7 +35,7 @@ public class Ground {
     @Column(name = "status")
     private String status;
 
-    @OneToMany
+    @OneToMany(cascade = CascadeType.REMOVE)
     @JoinColumn(name = "ground_id")
     private List<UserGround> userGroundList;
 

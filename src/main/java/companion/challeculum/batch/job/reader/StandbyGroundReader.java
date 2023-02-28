@@ -26,8 +26,9 @@ public class StandbyGroundReader implements ItemReader<Ground> {
     @Override
     public Ground read() {
         if (groundIterator == null) {
-            List<Ground> ongoingGrounds = groundRepository.findByStartAtEqualsAndStatusEquals(LocalDate.now(), Constants.GROUND_STANDBY);
-            groundIterator = ongoingGrounds.iterator();
+//            List<Ground> standbyGrounds = groundRepository.findByStartAtEqualsAndStatusEquals(LocalDate.now(), Constants.GROUND_STANDBY);
+            List<Ground> standbyGrounds = groundRepository.findByStatusEquals(Constants.GROUND_STANDBY);
+            groundIterator = standbyGrounds.iterator();
         }
         if (groundIterator.hasNext()) return groundIterator.next();
         else return null;
