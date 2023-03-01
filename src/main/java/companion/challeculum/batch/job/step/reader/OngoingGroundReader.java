@@ -1,13 +1,12 @@
-package companion.challeculum.batch.job.reader;
+package companion.challeculum.batch.job.step.reader;
 
-import companion.challeculum.batch.config.Constants;
+import companion.challeculum.batch.common.Constants;
 import companion.challeculum.batch.entity.Ground;
 import companion.challeculum.batch.repository.GroundRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.batch.item.ItemReader;
 import org.springframework.stereotype.Component;
 
-import java.time.LocalDate;
 import java.util.Iterator;
 import java.util.List;
 

@@ -1,6 +1,6 @@
-package companion.challeculum.batch.job.reader;
+package companion.challeculum.batch.job.step.reader;
 
-import companion.challeculum.batch.config.Constants;
+import companion.challeculum.batch.common.Constants;
 import companion.challeculum.batch.entity.UserMission;
 import companion.challeculum.batch.repository.UserMissionRepository;
 import lombok.RequiredArgsConstructor;

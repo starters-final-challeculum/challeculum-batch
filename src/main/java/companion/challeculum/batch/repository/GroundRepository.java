@@ -16,5 +16,5 @@ public interface GroundRepository extends JpaRepository<Ground, Long> {
     List<Ground> findByEndAtEqualsAndStatusEquals(LocalDate date, String status);
 
     // 테스트용
-    List<Ground> findByStatusEquals( String status);
+    List<Ground> findByStatusEquals(String status);
 }

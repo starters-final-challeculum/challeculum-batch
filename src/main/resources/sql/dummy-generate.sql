@@ -130,54 +130,54 @@ VALUES (1, 1),
 #     AUTO_INCREMENT = 1;
 # -- 그라운드 더미 데이터 수작업--
 INSERT INTO ground (ground_id, create_user_id, lecture_id, ground_title, information, min_capacity, deposit,
-                          created_at, start_at, end_at, status)
+                    created_at, start_at, end_at, status)
 VALUES (1, 1, 1, '파이썬 그라운드', 'Charles Russell Severance 파이썬 초급 강의', 2, 1000, '2023-02-23 13:59:54', '2023-02-26',
         '2023-03-05', 'GROUND_ONGOING');
 INSERT INTO ground (ground_id, create_user_id, lecture_id, ground_title, information, min_capacity, deposit,
-                          created_at, start_at, end_at, status)
+                    created_at, start_at, end_at, status)
 VALUES (2, 1, 2, '스프링 입문 그라운드', '김영한 스프링 입문 강의', 2, 2000, '2023-02-17 13:59:54', '2023-02-21', '2023-02-28',
         'GROUND_COMPLETED');
 INSERT INTO ground (ground_id, create_user_id, lecture_id, ground_title, information, min_capacity, deposit,
-                          created_at, start_at, end_at, status)
+                    created_at, start_at, end_at, status)
 VALUES (3, 1, 3, '비즈니스 영어 그라운드', '비대면 비즈니스 영어 강의', 2, 5000, '2023-02-25 13:59:54', '2023-03-05', '2023-03-12',
         'GROUND_STANDBY');
 INSERT INTO ground (ground_id, create_user_id, lecture_id, ground_title, information, min_capacity, deposit,
-                          created_at, start_at, end_at, status)
+                    created_at, start_at, end_at, status)
 VALUES (4, 2, 4, 'Conversational Vocabulary 그라운드', '영어 회화에 필요한 단어 강의', 2, 3000, '2023-02-20 13:59:54', '2023-02-25',
         '2023-03-03', 'GROUND_ONGOING');
 INSERT INTO ground (ground_id, create_user_id, lecture_id, ground_title, information, min_capacity, deposit,
-                          created_at, start_at, end_at, status)
+                    created_at, start_at, end_at, status)
 VALUES (5, 2, 5, '고등 수학 그라운드', '미국 고등학교 수학 강의', 2, 4000, '2023-02-23 11:42:54', '2023-03-04', '2023-03-10',
         'GROUND_STANDBY');
 INSERT INTO ground (ground_id, create_user_id, lecture_id, ground_title, information, min_capacity, deposit,
-                          created_at, start_at, end_at, status)
+                    created_at, start_at, end_at, status)
 VALUES (6, 3, 6, '쿠버네티스 그라운드', '쿠버네티스 강의', 2, 4000, '2023-02-23 11:42:54', '2023-03-07', '2023-03-13',
         'GROUND_STANDBY');
 INSERT INTO ground (ground_id, create_user_id, lecture_id, ground_title, information, min_capacity, deposit,
-                          created_at, start_at, end_at, status)
+                    created_at, start_at, end_at, status)
 VALUES (7, 4, 7, 'TESOL 자격증 그라운드', 'Arizona State University TESOL 강의', 2, 6000, '2023-02-15 11:42:54', '2023-02-17',
         '2023-02-23', 'GROUND_COMPLETED');
 
 
 
 INSERT INTO ground (ground_id, create_user_id, lecture_id, ground_title, information, min_capacity, deposit,
-                          created_at, start_at, end_at, status)
+                    created_at, start_at, end_at, status)
 VALUES (8, 15, 6, 'CKA 자격증 그라운드', 'Mumshad Mannambeth의 CKF 자격증 강의', 2, 2000, '2023-02-17 16:42:54', '2023-02-25',
         '2023-03-03', 'GROUND_ONGOING');
 INSERT INTO ground (ground_id, create_user_id, lecture_id, ground_title, information, min_capacity, deposit,
-                          created_at, start_at, end_at, status)
+                    created_at, start_at, end_at, status)
 VALUES (9, 19, 14, '중국어 회화 입문 그라운드', '홍차는홍차의 중국어 회화 입문 강의', 2, 5000, '2023-02-28 09:42:54', '2023-03-04', '2023-03-10',
         'GROUND_STANDBY');
 INSERT INTO ground (ground_id, create_user_id, lecture_id, ground_title, information, min_capacity, deposit,
-                          created_at, start_at, end_at, status)
+                    created_at, start_at, end_at, status)
 VALUES (10, 7, 17, '씨리얼 오픽 2급(IM3~IH) 그라운드', '다름에듀의 씨리얼 오픽 2급(IM3~IH) 강의', 2, 3000, '2023-02-16 11:20:54', '2023-02-18',
         '2023-02-24', 'GROUND_COMPLETED');
 INSERT INTO ground (ground_id, create_user_id, lecture_id, ground_title, information, min_capacity, deposit,
-                          created_at, start_at, end_at, status)
+                    created_at, start_at, end_at, status)
 VALUES (11, 9, 2, '김영한 스프링 입문 그라운드', '김영한의 스프링 입문자를 위한 강의', 2, 6000, '2023-02-16 16:08:54', '2023-02-20', '2023-02-26',
         'GROUND_COMPLETED');
 INSERT INTO ground (ground_id, create_user_id, lecture_id, ground_title, information, min_capacity, deposit,
-                          created_at, start_at, end_at, status)
+                    created_at, start_at, end_at, status)
 VALUES (12, 8, 16, 'ITQ 파워포인트 자격증 그라운드', '이지은의 ITQ 자격증 강의', 2, 4000, '2023-02-27 17:12:54', '2023-03-07', '2023-03-13',
         'GROUND_STANDBY');
 

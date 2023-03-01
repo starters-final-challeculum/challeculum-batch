@@ -1,4 +1,4 @@
-package companion.challeculum.batch.config;
+package companion.challeculum.batch.common;
 
 /**
  * Created by jonghyeon on 2023/02/26,

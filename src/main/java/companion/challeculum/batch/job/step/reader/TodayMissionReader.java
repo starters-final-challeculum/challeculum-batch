@@ -1,4 +1,4 @@
-package companion.challeculum.batch.job.reader;
+package companion.challeculum.batch.job.step.reader;
 
 import companion.challeculum.batch.entity.Mission;
 import companion.challeculum.batch.repository.MissionRepository;

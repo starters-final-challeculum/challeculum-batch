@@ -1,6 +1,5 @@
-package companion.challeculum.batch.job.processor;
+package companion.challeculum.batch.job.step.processor;
 
-import companion.challeculum.batch.config.Constants;
 import companion.challeculum.batch.entity.Ground;
 import lombok.RequiredArgsConstructor;
 import org.springframework.batch.item.ItemProcessor;
