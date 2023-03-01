@@ -8,4 +8,6 @@ import java.util.List;
 
 public interface MissionRepository extends JpaRepository<Mission, Long> {
     List<Mission> findByMissionAtIs(LocalDate date);
+
+    List<Mission> findAllByGroundId(Long groundId);
 }

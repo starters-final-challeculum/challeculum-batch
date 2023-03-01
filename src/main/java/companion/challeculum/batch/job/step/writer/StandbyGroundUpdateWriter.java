@@ -4,6 +4,7 @@ import companion.challeculum.batch.common.Constants;
 import companion.challeculum.batch.entity.Ground;
 import companion.challeculum.batch.entity.User;
 import companion.challeculum.batch.repository.GroundRepository;
+import companion.challeculum.batch.repository.MissionRepository;
 import companion.challeculum.batch.repository.UserGroundRepository;
 import companion.challeculum.batch.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
@@ -27,6 +28,7 @@ public class StandbyGroundUpdateWriter implements ItemWriter<Ground> {
     private final UserGroundRepository userGroundRepository;
 
     private static final Logger logger = LoggerFactory.getLogger(StandbyGroundUpdateWriter.class);
+    private final MissionRepository missionRepository;
 
     @Override
     @Transactional
@@ -40,6 +42,7 @@ public class StandbyGroundUpdateWriter implements ItemWriter<Ground> {
                     user.setPoint(user.getPoint() + ground.getDeposit());
                     userRepository.save(user);
                     userGroundRepository.delete(userGround);
+                    missionRepository.deleteAll(missionRepository.findAllByGroundId(ground.getId()));
                 });
                 ground.setStatus(Constants.GROUND_CANCELLED);
             } else {

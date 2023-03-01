@@ -28,6 +28,7 @@ public class StandbyGroundUpdateJobConfig {
     private final StandbyGroundProcessor standbyGroundProcessor;
     private final StandbyGroundUpdateWriter standbyGroundUpdateWriter;
 
+    //@Scheduled(cron = "*/10 * * * * *")
     @Scheduled(cron = "0 0 6 * * *") // 매일 6시에 실행
     public void runStandbyGroundUpdateJob() throws Exception {
         JobParameters jobParameters = new JobParametersBuilder()
